@@ -3,6 +3,7 @@
 
 import { FaUser, FaBoxOpen, FaTimesCircle, FaStar, FaSignOutAlt } from "react-icons/fa";
 import styles from "./AccountDetail.module.css";
+import Link from "next/link";
 
 export default function AccountDetail({ onClose }: { onClose: () => void }) {
   return (
@@ -10,7 +11,9 @@ export default function AccountDetail({ onClose }: { onClose: () => void }) {
       <ul className={styles.menu}>
         <li>
           <FaUser className={styles.icon} />
-          <span>Manage My Account</span>
+          <Link href="/manageaccount">
+            <span>Manage My Account</span>
+          </Link>  
         </li>
         <li>
           <FaBoxOpen className={styles.icon} />

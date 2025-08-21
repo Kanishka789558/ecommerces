@@ -42,6 +42,8 @@
 }
 
 /* Banner Section */
+
+
 .heroBanner {
   width: 892px;
   height: 344px;
@@ -54,12 +56,13 @@
   align-items: flex-start;
   margin-top: 8px;
 }
-
 /* Banner Image */
 .bannerImg {
+   position: absolute;
+  left: 396px;   /* ✅ figma left */
+  top: 16px;     /* ✅ figma top */
   object-fit: cover;
-  width: 100%;
-  height: 100%;
+  
 }
 
 /* Apple Logo + Series */

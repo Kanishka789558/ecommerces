@@ -1,22 +1,15 @@
 
 
 .header {
-  position: sticky;
+     /* sirf wrapper hai */
+  width: 1440px;        /* figma ke hisaab se */
+  margin: 0 auto;  
   top: 0;
   
-  z-index: 50;
-  background: var(--white);
-
-  width: 1440px;
-  height: 48px;
-  background: #000000;
-  opacity: 1;
-
-  display: flex;
-  align-items: center; /* vertically center items */
-  justify-content: space-between; /* spread items across */
-  padding: 0 20px; /* optional spacing inside */
+  z-index: 1000;     /* center karne ke liye */
 }
+
+
 
 /* ---- Promo bar ---- */
 
@@ -96,23 +89,22 @@
 /* ---- Main nav ---- */
 
 
+
 .mainNavWrapper {
-  position:fixed;
   
-  top: 88px;
-  left: 135px;
-
-  width: 1170px;
+  top: 48px;        /* ✅ promo ke neeche */
+  margin: 0 auto;       /* ✅ figma ke hisaab se */
+  width: 1170px;    /* ✅ figma fixed width */
   height: 38px;
-  background: #ffffff;
+  background: #fff;
   border-bottom: 1px solid var(--border);
-  opacity: 1;
-
+  z-index: 999;
   display: flex;
   align-items: center;
-  gap: 148px; /* space between nav sections/items */
-  margin-top: 120px;
+  gap: 148px;
+  padding-top: 90px;
 }
+
 
 .mainNav {
   display: flex;
@@ -216,7 +208,7 @@
   border-radius: 8px;
   border: 1px solid var(--border);
   text-decoration: none;
-  color: #222;
+  
 }
 
 .iconBtn:hover {
@@ -245,26 +237,19 @@
 
 
 
+
 .promoBar {
-  position: fixed;        /* scroll ke sath fix ho jayegi */
-  top: 0;                 /* page ke bilkul upar */
-  left: 0;
-  right: 0;
-  z-index: 1000;  
-   /* sabke upar dikhne ke liye */
   
+  top: 0;
+  left: 0;
+  width: 1440px;    /* ✅ figma fixed width */
+  height: 48px;
+  background: #000;
+  z-index: 1000;
   display: flex;
   justify-content: center;
   align-items: center;
-
- 
-  background: #000000;    /* black background */
-  color: #ffffff;
-  font-size: 12px;
-  line-height: 1;
-  opacity: 1;
 }
-
 
 
 .shopNow {
@@ -363,7 +348,7 @@
   position: absolute;
   top: 80px; /* adjust based on header height */
   right: 20px;
-  background: #fff;
+  background:#fff;
   z-index: 1000;
   padding: 20px;
   border-radius: 8px;

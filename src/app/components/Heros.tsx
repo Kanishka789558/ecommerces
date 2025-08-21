@@ -233,8 +233,8 @@ export default function Hero() {
         <Image
           src="/hero-banner.jpg"
           alt="iPhone Banner"
-          width={892}
-          height={344}
+          width= {496}
+          height= {352}
           priority
           className={styles.bannerImg}
         />

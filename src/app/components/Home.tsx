@@ -11,7 +11,9 @@ import Month from "./Month";
 import MusicBanner from "./MusicBanner";
 import Product from "./Product";
 import Featured from "./Featured";
+
 import Heros from "./Heros";
+
 
 export default function Home() {
   return (
@@ -42,7 +44,12 @@ export default function Home() {
           <Featured/>
         </div>
         
-      <div/>
+     
+          
+             
+          
+        
+      
       
     </>   
         

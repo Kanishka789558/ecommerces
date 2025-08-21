@@ -127,21 +127,19 @@
 //   );
 // }
 
-
 "use client";
 
 import Image from "next/image";
-import styles from "./Footer.module.css";
 import Link from "next/link";
-
+import styles from "./Footer.module.css";
+import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 
 export default function Footer() {
   return (
-    
     <footer className={styles.footer}>
-      <div className={styles.container}>
-        {/* Column 1 - Brand */}
-        <div>
+      <div className={styles.innerContainer}>
+        {/* Column 1: Exclusive & Subscribe */}
+        <div className={styles.column}>
           <h2 className={styles.title}>Exclusive</h2>
           <p className={styles.subHeading}>Subscribe</p>
           <p className={styles.text}>Get 10% off your first order</p>
@@ -151,8 +149,8 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Column 2 - Support */}
-        <div>
+        {/* Column 2: Support */}
+        <div className={styles.column}>
           <h3 className={styles.columnTitle}>Support</h3>
           <p className={styles.text}>
             111 Bijoy sarani, Dhaka,<br />DH 1515, Bangladesh.
@@ -161,8 +159,8 @@ export default function Footer() {
           <p className={styles.text}>+88015-88888-9999</p>
         </div>
 
-        {/* Column 3 - Account */}
-        <div>
+        {/* Column 3: Account */}
+        <div className={styles.column}>
           <h3 className={styles.columnTitle}>Account</h3>
           <ul className={styles.list}>
             <li><Link href="#">My Account</Link></li>
@@ -173,8 +171,8 @@ export default function Footer() {
           </ul>
         </div>
 
-        {/* Column 4 - Quick Link */}
-        <div>
+        {/* Column 4: Quick Link */}
+        <div className={styles.column}>
           <h3 className={styles.columnTitle}>Quick Link</h3>
           <ul className={styles.list}>
             <li><Link href="#">Privacy Policy</Link></li>
@@ -184,31 +182,34 @@ export default function Footer() {
           </ul>
         </div>
 
-        {/* Column 5 - Download App */}
-        <div>
+        {/* Column 5: Download App */}
+        <div className={styles.column}>
           <h3 className={styles.columnTitle}>Download App</h3>
-          <p className={styles.text}>Save $3 with App New User Only</p>
+          <p className={styles.textSmall}>Save $3 with App New User Only</p>
           <div className={styles.qrWrapper}>
             <Image src="/qrcode.png" alt="QR code" width={80} height={80} />
             <div className={styles.storeButtons}>
-              <Image src="/googleplay.png" alt="Google Play" width={110} height={35} />
-              {/* <Image src="/appstore.png" alt="App Store" width={110} height={35} /> */}
+              <div className={styles.storeButton}>
+                <Image src="/googleplay.png" alt="Google Play" width={104} height={30} />
+              </div>
+              <div className={styles.storeButton}>
+                <Image src="/appstore.png" alt="App Store" width={104} height={30} />
+              </div>
             </div>
           </div>
           <div className={styles.social}>
-            <Link href="#"><i className="fab fa-facebook-f"></i></Link>
-            <Link href="#"><i className="fab fa-twitter"></i></Link>
-            <Link href="#"><i className="fab fa-instagram"></i></Link>
-            <Link href="#"><i className="fab fa-linkedin-in"></i></Link>
+            <Link href="#"><FaFacebookF /></Link>
+            <Link href="#"><FaTwitter /></Link>
+            <Link href="#"><FaInstagram /></Link>
+            <Link href="#"><FaLinkedinIn /></Link>
           </div>
         </div>
       </div>
 
-      {/* Copyright */}
       <div className={styles.copy}>
         © Copyright Rimel 2022. All rights reserved
       </div>
     </footer>
-    
   );
 }
+

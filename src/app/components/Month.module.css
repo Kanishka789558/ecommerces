@@ -74,44 +74,9 @@
 }
 
 /* Individual Product Card */
-.card {
-  position: relative;
-  width: 190px; /* according to Frame 605 */
-  height: 180px;
-  background: #F5F5F5;
-  border-radius: 4px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
 
-/* Product Image Box */
-.imageBox {
-  position: relative;
-  width: 140px; /* according to 672462_ZAH9D_5626 frame */
-  height: 146px;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  background: #F5F5F5;
-  border-radius: 4px;
-  overflow: hidden;
-}
-
-.productImage {
-  object-fit: cover;
-}
 
 /* Product Info */
-.infoBox {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  margin-top: 10px;
-}
 
 .productTitle {
   font-family: 'Poppins', sans-serif;
@@ -201,4 +166,50 @@
 }
 
 
-.imageBox { position: absolute; width: 190px; height: 180px; left: 50%; top: 50%; transform: translate(-50%, -50%); } .productImage { object-fit: contain; }
+
+
+
+
+
+
+
+
+
+/* Card */
+.card {
+  position: relative;
+  width: 270px;   /* match figma */
+  height: 350px;  /* give enough room for image + info */
+  background: transparent; /* remove full grey here */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Image Box */
+.imageBox {
+  position: relative; /* ❌ remove absolute */
+  width: 270px;
+  height: 250px;
+  background: #F5F5F5; /* grey only for image area */
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Product Image */
+.productImage {
+  object-fit: contain;
+}
+
+/* Info Box */
+.infoBox {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* instead of center */
+  gap: 8px;
+}

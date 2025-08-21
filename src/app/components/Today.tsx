@@ -386,14 +386,27 @@ export default function Today() {
             <p>{timeLeft.days.toString().padStart(2, "0")}</p>
             <span>Days</span>
           </div>
+          <div className={styles.colon}>
+            <span></span>
+            <span></span>
+          </div>
           <div>
             <p>{timeLeft.hours.toString().padStart(2, "0")}</p>
             <span>Hours</span>
+          </div>
+          <div className={styles.colon}>
+            <span></span>
+            <span></span>
           </div>
           <div>
             <p>{timeLeft.minutes.toString().padStart(2, "0")}</p>
             <span>Minutes</span>
           </div>
+          <div className={styles.colon}>
+            <span></span>
+            <span></span>
+          </div>
+
           <div>
             <p>{timeLeft.seconds.toString().padStart(2, "0")}</p>
             <span>Seconds</span>
@@ -451,9 +464,19 @@ export default function Today() {
             <h3>{p.name}</h3>
             <div className={styles.price}>
               <span className={styles.newPrice}>{p.newPrice}</span>
+              
               <span className={styles.oldPrice}>{p.oldPrice}</span>
             </div>
-            <p className={styles.rating}>⭐ {p.rating}</p>
+            {/* <p className={styles.rating}>⭐ {p.rating}</p> */}
+            {/* <div className={styles.rating}>
+              {"★".repeat(p.rating)}
+              {"☆".repeat(5 - p.rating)}
+            </div> */}
+            <div className={styles.rating}>
+              {"★".repeat(Math.min(5, Math.max(0, Math.round(p.rating / 20))))}
+              {"☆".repeat(5 - Math.min(5, Math.max(0, Math.round(p.rating / 20))))}
+            </div>
+
           </div>
         ))}
       </div>
