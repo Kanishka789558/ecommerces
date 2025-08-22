@@ -597,6 +597,220 @@
 
 
 
+// "use client";
+
+// import { useEffect, useState } from "react";
+// import { useRouter } from "next/navigation";
+// import { supabase } from "@/app/libr/supabaseClient";
+// import styles from "./MyOrder.module.css";
+
+// export default function MyOrder() {
+//   const [orders, setOrders] = useState<any[]>([]);
+//   const [userId, setUserId] = useState<string | null>(null);
+//   const router = useRouter();
+
+//   // Get current logged-in user session
+//   useEffect(() => {
+//     const checkAuth = async () => {
+//       const { data: sessionData, error } = await supabase.auth.getSession();
+//       if (error) {
+//         console.error(error);
+//         return;
+//       }
+//       if (sessionData.session?.user) {
+//         // Supabase user id is usually UUID string
+//         setUserId(sessionData.session.user.id);
+//       } else {
+//         router.push("/login");
+//       }
+//     };
+
+//     checkAuth();
+
+//     const { data: listener } = supabase.auth.onAuthStateChange(
+//       (_event, session) => {
+//         if (session?.user) setUserId(session.user.id);
+//         else router.push("/login");
+//       }
+//     );
+
+//     return () => listener.subscription.unsubscribe();
+//   }, [router]);
+
+//   // Fetch orders
+//   useEffect(() => {
+//     if (!userId) return;
+//     const fetchOrders = async () => {
+//       const { data, error } = await supabase
+//         .from("orderss")
+//         .select("*")
+//         .eq("user_id", userId)
+//         .order("created_at", { ascending: false });
+
+//       if (error) console.error(error);
+//       else setOrders(data || []);
+//     };
+//     fetchOrders();
+//   }, [userId]);
+
+//   // Add to cart
+//   const addToCart = async (productId: number) => {
+//     if (!userId) return alert("User not logged in!");
+//     const { error } = await supabase.from("carts").insert([
+//       { product_id: productId, quantity: 1, user_id: userId },
+//     ]);
+//     if (error) console.error(error);
+//     else alert("Item added to cart!");
+//   };
+
+//   return (
+//     <div className={styles.container}>
+//        <h2 className={styles.heading}>My Orders</h2>
+//        {orders.length === 0 ? (
+//         <><p>No orders placed yet.</p><ul className={styles.orderList}>
+//                   {orders.map((order) => (
+//                       <li key={order.id} className={styles.orderItem}>
+//                           <strong>Order ID:</strong> {order.id} <br />
+//                           <strong>Status:</strong> {order.status} <br />
+//                           <button
+//                               className={styles.button}
+//                               onClick={() => router.push(`/myorders/${order.id}`)}
+//                           >
+//                               View Details
+//                           </button>
+//                           <button
+//                               className={styles.button}
+//                               onClick={() => addToCart(order.product_id)}
+//                           >
+//                               Add Again to Cart
+//                           </button>
+//                       </li>
+//                   ))}
+//               </ul></>
+//       ) : (  
+//         <ul className={styles.orderList}>
+//           {orders.map((order) => (
+//             <li key={order.id} className={styles.orderItem}>
+//               <strong>Order ID:</strong> {order.id} <br />
+//               <strong>Status:</strong> {order.status} <br />
+//               <button
+//                 className={styles.button}
+//                 onClick={() => router.push(`/myorders/${order.id}`)}
+//               >
+//                 View Details
+//               </button>
+//               <button
+//                 className={styles.button}
+//                 onClick={() => addToCart(order.product_id)}
+//               >
+//                 Add Again to Cart
+//               </button>
+//             </li>
+//           ))}
+//         </ul>
+//       )}
+//     </div>
+//   );
+// }
+
+
+
+
+
+// "use client";
+
+// import { useEffect, useState } from "react";
+// import { useRouter } from "next/navigation";
+// import { supabase } from "@/app/libr/supabaseClient";
+// import styles from "./MyOrder.module.css";
+
+// interface Order {
+//   id: number;
+//   user_id: string;
+//   product_id: number;
+//   status: string;
+// }
+
+// export default function MyOrder() {
+//   const [orders, setOrders] = useState<Order[]>([]);
+//   const [userId, setUserId] = useState<string | null>(null);
+//   const router = useRouter();
+
+//   // Get current logged-in user
+//   useEffect(() => {
+//     const checkAuth = async () => {
+//       const { data: sessionData } = await supabase.auth.getSession();
+//       const user = sessionData.session?.user;
+//       if (user) {
+//         setUserId(user.id);
+//       } else {
+//         router.push("/login");
+//       }
+//     };
+//     checkAuth();
+//   }, [router]);
+
+//   // Fetch orders for logged-in user
+//   useEffect(() => {
+//     if (!userId) return;
+
+//     const fetchOrders = async () => {
+//       const { data, error } = await supabase
+//         .from("orderss")
+//         .select("*")
+//         .eq("user_id", userId)
+//         .order("id", { ascending: false }); // latest first
+
+//       if (error) console.error("Error fetching orders:", error);
+//       else setOrders(data || []);
+//     };
+
+//     fetchOrders();
+//   }, [userId]);
+
+//   // Add product to cart
+//   const addToCart = async (productId: number) => {
+//     if (!userId) return alert("User not logged in!");
+//     const { error } = await supabase.from("carts").insert([
+//       { product_id: productId, quantity: 1, user_id: userId },
+//     ]);
+//     if (error) console.error("Add to cart error:", error);
+//     else alert("Item added to cart!");
+//   };
+
+//   return (
+//     <div className={styles.container}>
+//       <h2 className={styles.heading}>My Orders</h2>
+
+//       {orders.length === 0 ? (
+//         <p>No orders placed yet.</p>
+//       ) : (
+//         <ul className={styles.orderList}>
+//           {orders.map((order) => (
+//             <li key={order.id} className={styles.orderItem}>
+//               <strong>Order ID:</strong> {order.id} <br />
+//               <strong>Status:</strong> {order.status} <br />
+//               <button
+//                 className={styles.button}
+//                 onClick={() => router.push(`/myorders/${order.id}`)}
+//               >
+//                 View Details
+//               </button>
+//               <button
+//                 className={styles.button}
+//                 onClick={() => addToCart(order.product_id)}
+//               >
+//                 Add Again to Cart
+//               </button>
+//             </li>
+//           ))}
+//         </ul>
+//       )}
+//     </div>
+//   );
+// }
+
+
 "use client";
 
 import { useEffect, useState } from "react";
@@ -604,90 +818,67 @@ import { useRouter } from "next/navigation";
 import { supabase } from "@/app/libr/supabaseClient";
 import styles from "./MyOrder.module.css";
 
+interface Order {
+  id: number;
+  user_uuid: string;
+  product_id: number;
+  status: string;
+}
+
 export default function MyOrder() {
-  const [orders, setOrders] = useState<any[]>([]);
+  const [orders, setOrders] = useState<Order[]>([]);
   const [userId, setUserId] = useState<string | null>(null);
   const router = useRouter();
 
-  // Get current logged-in user session
+  // Get current logged-in user
   useEffect(() => {
     const checkAuth = async () => {
-      const { data: sessionData, error } = await supabase.auth.getSession();
-      if (error) {
-        console.error(error);
-        return;
-      }
-      if (sessionData.session?.user) {
-        // Supabase user id is usually UUID string
-        setUserId(sessionData.session.user.id);
+      const { data: sessionData } = await supabase.auth.getSession();
+      const user = sessionData.session?.user;
+      if (user) {
+        setUserId(user.id); // UUID
       } else {
         router.push("/login");
       }
     };
-
     checkAuth();
-
-    const { data: listener } = supabase.auth.onAuthStateChange(
-      (_event, session) => {
-        if (session?.user) setUserId(session.user.id);
-        else router.push("/login");
-      }
-    );
-
-    return () => listener.subscription.unsubscribe();
   }, [router]);
 
-  // Fetch orders
+  // Fetch orders for logged-in user
   useEffect(() => {
     if (!userId) return;
+
     const fetchOrders = async () => {
       const { data, error } = await supabase
         .from("orderss")
         .select("*")
-        .eq("user_id", userId)
-        .order("created_at", { ascending: false });
+        .eq("user_uuid", userId)  // ✅ match uuid
+        .order("id", { ascending: false });
 
-      if (error) console.error(error);
+      if (error) console.error("Error fetching orders:", error);
       else setOrders(data || []);
     };
+
     fetchOrders();
   }, [userId]);
 
-  // Add to cart
+  // Add product to cart
   const addToCart = async (productId: number) => {
     if (!userId) return alert("User not logged in!");
     const { error } = await supabase.from("carts").insert([
-      { product_id: productId, quantity: 1, user_id: userId },
+      { product_id: productId, quantity: 1, user_uuid: userId }, // ✅ uuid
     ]);
-    if (error) console.error(error);
+    if (error) console.error("Add to cart error:", error);
     else alert("Item added to cart!");
   };
 
   return (
     <div className={styles.container}>
-       <h2 className={styles.heading}>My Orders</h2>
-       {orders.length === 0 ? (
-        <><p>No orders placed yet.</p><ul className={styles.orderList}>
-                  {orders.map((order) => (
-                      <li key={order.id} className={styles.orderItem}>
-                          <strong>Order ID:</strong> {order.id} <br />
-                          <strong>Status:</strong> {order.status} <br />
-                          <button
-                              className={styles.button}
-                              onClick={() => router.push(`/myorders/${order.id}`)}
-                          >
-                              View Details
-                          </button>
-                          <button
-                              className={styles.button}
-                              onClick={() => addToCart(order.product_id)}
-                          >
-                              Add Again to Cart
-                          </button>
-                      </li>
-                  ))}
-              </ul></>
-      ) : (  
+      <h2 className={styles.heading}>My Orders</h2>
+
+      {orders.length === 0 ? (
+        <p>No orders placed yet.</p>
+      ) : (
         <ul className={styles.orderList}>
           {orders.map((order) => (
             <li key={order.id} className={styles.orderItem}>
@@ -712,8 +903,3 @@ export default function MyOrder() {
     </div>
   );
 }
-
-
-
-
-
