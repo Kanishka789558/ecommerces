@@ -143,3 +143,24 @@
   cursor: pointer;
   margin-top: 24px;
 }
+
+
+.pageWrapper {
+  width: 100%;
+  min-height: 100vh; /* pura viewport height */
+  background: #f9f9f9;
+  padding: 40px;
+  box-sizing: border-box;
+}
+
+
+
+.cartContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;  /* pura screen width */
+  max-width: 1200px; /* responsive control */
+  margin: 0 auto;
+  font-family: "Poppins", sans-serif;
+}

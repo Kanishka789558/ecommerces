@@ -17,19 +17,28 @@ export default function AccountDetail({ onClose }: { onClose: () => void }) {
         </li>
         <li>
           <FaBoxOpen className={styles.icon} />
-          <span>My Order</span>
+          <Link href="/myorder">
+              <span>My Order</span>
+          </Link>
+          
         </li>
         <li>
           <FaTimesCircle className={styles.icon} />
-          <span>My Cancellations</span>
+          <Link href="/cancel">
+              <span>My Cancellations</span>
+          </Link>
         </li>
         <li>
           <FaStar className={styles.icon} />
-          <span>My Reviews</span>
+          <Link href="/myreview">
+              <span>My Reviews</span>
+          </Link>
         </li>
         <li className={styles.logout}>
           <FaSignOutAlt className={styles.icon} />
-          <span>Logout</span>
+          <Link href="/logout">
+             <span>Logout</span>
+          </Link>
         </li>
       </ul>
     </div>
